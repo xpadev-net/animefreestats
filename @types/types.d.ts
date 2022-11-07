@@ -42,3 +42,13 @@ type anime = {
 type episode = {
   data: episodeItem;
 }
+type historyItem = {
+  url: string;
+  type: "anime"|"episode";
+  event: "insert"|"free"|"remove"|"reenable"|"incorrect genre";
+  freeEndAt: number|null;
+  addAt: number;
+}
+type history = {
+  data: historyItem[];
+}

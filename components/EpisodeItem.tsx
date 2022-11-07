@@ -20,7 +20,7 @@ const EpisodeItem = ({ value }: props) => {
           {value.title} / {site2name(value.site)}
         </span>
         <span className={"text-sm"}>
-          {value.isAvailable===0?"配信終了":value.freeEndAt===null?"無料配信なし":`配信期限：${date.toLocaleDateString()} ${date.toLocaleTimeString()}`}
+          {value.isAvailable===0?"配信終了":value.freeEndAt===null?"無料配信なし":`配信期限：${date.toLocaleString()}`}
         </span>
       </div>
     </Link>

@@ -5,7 +5,7 @@ import {useMemo} from "react";
 import {EpisodeItem} from "../../components/EpisodeItem";
 import {useRouter} from "next/router";
 
-const Search = () => {
+const Anime = () => {
   const router = useRouter();
 
   const query = function(query){if (typeof query==="string") return encodeURI(query as string);return query?query[0]:""}(router.query.anime);
@@ -57,4 +57,4 @@ const Search = () => {
     </main>
   );
 };
-export default Search;
+export default Anime;
