@@ -3,51 +3,34 @@ import useSWR from "swr";
 import {fetcher} from "../../libraries/fetcher";
 import {useMemo} from "react";
 import {EpisodeItem} from "../../components/EpisodeItem";
-import {AnimeItem} from "../../components/AnimeItem";
 import {useRouter} from "next/router";
 
 const Search = () => {
   const router = useRouter();
 
-  const query = function(query){if (typeof query==="string") return encodeURI(query as string);return query?query[0]:""}(router.query.query);
-  const animes = useSWR<searchAnimes>(
-    `//animeinfo.xpadev.net/api/v1/search/animes?limit=50&query=${query}`,
-    fetcher
-  );
-  const episodes = useSWR<searchEpisodes>(
-    `//animeinfo.xpadev.net/api/v1/search/episodes?limit=50&query=${query}`,
+  const query = function(query){if (typeof query==="string") return encodeURI(query as string);return query?query[0]:""}(router.query.anime);
+  const animes = useSWR<anime>(
+    `//animeinfo.xpadev.net/api/v1/anime?query=${query}`,
     fetcher
   );
   const episodesComponent = useMemo(() => {
-    if (episodes.error) {
-      return <div className={"text-red-500"}>failed to load resources</div>;
-    }
-    if (!episodes.data) {
-      return <div className={"text-gray-500"}>loading...</div>;
+    if (animes.error||!animes.data) {
+      return <></>;
     }
     return (
       <>
-        {episodes.data.data.map((val, i) => {
+        {animes.data.data.episodes.map((val, i) => {
           return <EpisodeItem key={i} value={val} />;
         })}
       </>
     );
-  }, [episodes]);
-  const animesComponent = useMemo(() => {
-    if (animes.error) {
-      return <div className={"text-red-500"}>failed to load resources</div>;
-    }
-    if (!animes.data) {
-      return <div className={"text-gray-500"}>loading...</div>;
-    }
-    return (
-      <>
-        {animes.data.data.map((val, i) => {
-          return <AnimeItem key={i} value={val} />;
-        })}
-      </>
-    );
   }, [animes]);
+  if (animes.error) {
+    return <div className={"text-red-500"}>failed to load resources</div>;
+  }
+  if (!animes.data) {
+    return <div className={"text-gray-500"}>loading...</div>;
+  }
   return (
     <main className={"container mx-auto"}>
       <Head>
@@ -61,7 +44,7 @@ const Search = () => {
         <div
           className={"flex flex-col lg:flex-row lg:flex-wrap justify-center"}
         >
-          {animesComponent}
+          <h1 className={"text-3xl"}>{animes.data.data.anime.title}</h1>
         </div>
       </section>
       <section className={"m-3 p-3 "}>

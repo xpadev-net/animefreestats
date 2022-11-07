@@ -2,14 +2,14 @@ import { site2name } from "../libraries/site2name";
 import Link from "next/link";
 
 type props = {
-  value: episode;
+  value: searchEpisode;
 };
 
 const EpisodeItem = ({ value }: props) => {
-  const date = new Date(value.freeEndAt * 1000);
+  const date = new Date((value.freeEndAt||0) * 1000);
   return (
     <Link
-      href={`/episode/${value.url}`}
+      href={`/episodes/${value.url}`}
       className={
         `${value.isAvailable===0?"bg-gray-600 text-gray-400":value.freeEndAt===null?"bg-gray-400 text-gray-600":"bg-slate-200"} flex my-1 mx-1 px-10 py-2 rounded w-full lg:w-5/12 hover:bg-slate-300`
       }

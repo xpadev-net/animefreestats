@@ -2,7 +2,7 @@ import { site2name } from "../libraries/site2name";
 import Link from "next/link";
 
 type props = {
-  value: anime;
+  value: animeItem;
 };
 
 const AnimeItem = ({ value }: props) => {

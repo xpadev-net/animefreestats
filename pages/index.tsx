@@ -7,7 +7,7 @@ import { useMemo } from "react";
 import { EpisodeItem } from "../components/EpisodeItem";
 
 const Home: NextPage = () => {
-  const { data, error } = useSWR<episodes>(
+  const { data, error } = useSWR<searchEpisodes>(
     "//animeinfo.xpadev.net/api/v1/recent?limit=50",
     fetcher
   );
