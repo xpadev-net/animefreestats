@@ -1,7 +1,8 @@
 const sites: { [key: number]: string } = {
   1: "Abema",
   2: "GYAO!",
-  4: "ニコニコ動画",
+  3: "ニコニコ動画",
+  4: "dアニメストア ニコニコ支店"
 };
 const site2name = (site: number): string => {
   return sites[site] as string;

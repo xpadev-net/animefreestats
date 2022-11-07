@@ -12,7 +12,8 @@ const Search = () => {
   );
   const onEnter = useCallback(
     (e: KeyboardEvent<HTMLInputElement>) => {
-      if (value.length > 1 && e.key === "Enter") {
+      console.log(e.nativeEvent);
+      if (value.length > 1 && e.key === "Enter"&&!e.nativeEvent.isComposing) {
         void router.push(`/search/${value}`);
       }
     },
@@ -27,7 +28,7 @@ const Search = () => {
       placeholder={"検索"}
       value={value}
       onChange={onChange}
-      onKeyUp={onEnter}
+      onKeyDown={onEnter}
     />
   );
 };
