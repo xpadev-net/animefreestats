@@ -52,3 +52,7 @@ type historyItem = {
 type history = {
   data: historyItem[];
 }
+type error = {
+  error: number;
+  message: string;
+}

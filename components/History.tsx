@@ -14,7 +14,7 @@ const eventName = {
 
 const History = ({value}:props) => {
   if (value.error)return <div className={"text-red-500"}>failed to load resources</div>;
-  if (!value.data?.data)return <div className={"text-gray-500"}>loading...</div>
+  if (!value.data?.data)return <div className={"text-gray-500"}>読み込んでいます...</div>
   return <div>
     {value.data.data.map((val,index)=>{
       const date = new Date(val.addAt*1000),

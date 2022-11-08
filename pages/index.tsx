@@ -13,10 +13,13 @@ const Home: NextPage = () => {
   );
   const episodes = useMemo(() => {
     if (error) {
-      return <div className={"text-red-500"}>failed to load resources</div>;
+      return <div className={"text-red-500 text-center"}>データの読み込みに失敗しました</div>;
     }
     if (!data) {
-      return <div className={"text-gray-500"}>loading...</div>;
+      return <div className={"text-gray-500 text-center"}>読み込んでいます...</div>;
+    }
+    if (data.data.length === 0){
+      return <div className={"text-gray-500 text-center"}>無料配信中のアニメは見つかりませんでした</div>;
     }
     return (
       <>
@@ -36,7 +39,7 @@ const Home: NextPage = () => {
         />
       </Head>
       <section className={"m-3 p-3 "}>
-        <h1 className={"text-center text-3xl"}>まもなく配信終了する話</h1>
+        <h1 className={"text-center text-3xl"}>まもなく無料配信が終了する話</h1>
         <div
           className={"flex flex-col lg:flex-row lg:flex-wrap justify-center"}
         >

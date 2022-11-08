@@ -20,10 +20,13 @@ const Search = () => {
   );
   const episodesComponent = useMemo(() => {
     if (episodes.error) {
-      return <div className={"text-red-500"}>failed to load resources</div>;
+      return <div className={"text-red-500 text-center"}>データの読み込みに失敗しました</div>;
     }
     if (!episodes.data) {
-      return <div className={"text-gray-500"}>loading...</div>;
+      return <div className={"text-gray-500 text-center"}>読み込んでいます...</div>;
+    }
+    if (episodes.data.data.length === 0){
+      return <div className={"text-gray-500 text-center"}>該当する話は見つかりませんでした</div>;
     }
     return (
       <>
@@ -35,10 +38,13 @@ const Search = () => {
   }, [episodes]);
   const animesComponent = useMemo(() => {
     if (animes.error) {
-      return <div className={"text-red-500"}>failed to load resources</div>;
+      return <div className={"text-red-500 text-center"}>データの読み込みに失敗しました</div>;
     }
     if (!animes.data) {
-      return <div className={"text-gray-500"}>loading...</div>;
+      return <div className={"text-gray-500 text-center"}>読み込んでいます...</div>;
+    }
+    if (animes.data.data.length === 0){
+      return <div className={"text-gray-500 text-center"}>該当するタイトルは見つかりませんでした</div>;
     }
     return (
       <>
