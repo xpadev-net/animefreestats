@@ -12,9 +12,8 @@ const Search = () => {
   );
   const onEnter = useCallback(
     (e: KeyboardEvent<HTMLInputElement>) => {
-      console.log(e.nativeEvent);
       if (value.length > 1 && e.key === "Enter"&&!e.nativeEvent.isComposing) {
-        void router.push(`/search/${value}`);
+        void router.push(`/search/${encodeURI(value)}`);
       }
     },
     [value]
