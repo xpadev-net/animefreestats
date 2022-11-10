@@ -8,7 +8,7 @@ const Search = () => {
     (e: ChangeEvent<HTMLInputElement>) => {
       setValue(e.target.value);
     },
-    [value]
+    []
   );
   const onEnter = useCallback(
     (e: KeyboardEvent<HTMLInputElement>) => {
@@ -16,7 +16,7 @@ const Search = () => {
         void router.push(`/search/${encodeURIComponent(value)}`);
       }
     },
-    [value]
+    [value,router]
   );
   return (
     <input
