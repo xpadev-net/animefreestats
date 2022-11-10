@@ -6,7 +6,7 @@ type props = {
 };
 
 const EpisodeItem = ({ value }: props) => {
-  const date = new Date((value.freeEndAt||0) * 1000);
+  const date = value.freeEndAt===32503647600?"不明":new Date((value.freeEndAt||0) * 1000).toLocaleString();
   return (
     <Link
       href={`/episodes/${value.url}`}
@@ -20,7 +20,7 @@ const EpisodeItem = ({ value }: props) => {
           {value.title} / {site2name(value.site)}
         </span>
         <span className={"text-sm"}>
-          {value.isAvailable===0?"配信終了":value.freeEndAt===null?"無料配信なし":`配信期限：${date.toLocaleString()}`}
+          {value.isAvailable===0?"配信終了":value.freeEndAt===null?"無料配信なし":`配信期限：${date}`}
         </span>
       </div>
     </Link>

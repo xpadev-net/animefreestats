@@ -57,7 +57,7 @@ const Search = () => {
   return (
     <main className={"container mx-auto"}>
       <Head>
-        <title>{`AnimeFreeStats`}</title>
+        <title>{`${decodeURI(query)} - AnimeFreeStats`}</title>
         <meta
           name="description"
           content="アニメの無料配信情報を一括で見れるサイトです"

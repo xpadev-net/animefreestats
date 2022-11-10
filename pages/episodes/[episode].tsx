@@ -30,7 +30,7 @@ const Episode = () => {
     return <div className={"container mx-auto text-center text-red-500"}>該当する話が見つかりませんでした</div>;
   }
   const value = episode.data.data;
-  const freeEndAt = new Date((value.freeEndAt||0) * 1000),
+  const freeEndAt = value.freeEndAt===32503647600?"不明":new Date((value.freeEndAt||0) * 1000).toLocaleString(),
     addAt = new Date(value.addAt*1000),
     url = episode2url(value),
     site = site2name(value.site);
@@ -50,7 +50,7 @@ const Episode = () => {
       </section>
       <section className={"m-3 p-3 "}>
         <h2 className={"text-3xl"}>メタ情報</h2>
-        <p>配信状況: {value.isAvailable===0?"配信終了":value.freeEndAt===null?"無料配信なし":`無料配信中(期限：${freeEndAt.toLocaleString()})`}</p>
+        <p>配信状況: {value.isAvailable===0?"配信終了":value.freeEndAt===null?"無料配信なし":`無料配信中(期限：${freeEndAt})`}</p>
         <p>配信開始: {value.addAt<0?"不明":`${addAt.toLocaleString()}`}</p>
         <p className={"text-gray-400 text-sm"}>※配信開始=システムが認識したタイミング≠実際の配信開始</p>
         <p>DRM: {value.isDRM?"有効":"無効"}</p>

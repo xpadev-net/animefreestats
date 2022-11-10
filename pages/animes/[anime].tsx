@@ -7,6 +7,7 @@ import {useRouter} from "next/router";
 import Link from "next/link";
 import {anime2url} from "../../libraries/item2url";
 import {isError} from "../../libraries/typeGuard";
+import {site2name} from "../../libraries/site2name";
 
 const Anime = () => {
   const router = useRouter();
@@ -40,11 +41,13 @@ const Anime = () => {
   if (isError(animes.data)){
     return <div className={"container mx-auto text-center text-red-500"}>該当するタイトルが見つかりませんでした</div>;
   }
-  const url = anime2url(animes.data.data.anime);
+  const value = animes.data.data;
+  const url = anime2url(value.anime),
+  site = site2name(value.anime.site);
   return (
     <main className={"container mx-auto"}>
       <Head>
-        <title>{`AnimeFreeStats`}</title>
+        <title>{`${value.anime.title} (${site}) - AnimeFreeStats`}</title>
         <meta
           name="description"
           content="アニメの無料配信情報を一括で見れるサイトです"
@@ -54,8 +57,8 @@ const Anime = () => {
         <div
           className={"text-center"}
         >
-          <h1 className={"text-3xl"}>{animes.data.data.anime.title}</h1>
-          {animes.data.data.anime.isAvailable===1&&<p>配信ページ： <Link href={url} target={"_blank"} referrerPolicy={"no-referrer"}>{url}</Link></p>}
+          <h1 className={"text-3xl"}>{value.anime.title}</h1>
+          {value.anime.isAvailable===1&&<p>配信ページ： <Link href={url} target={"_blank"} referrerPolicy={"no-referrer"}>{url}</Link></p>}
         </div>
       </section>
       <section className={"m-3 p-3 "}>
